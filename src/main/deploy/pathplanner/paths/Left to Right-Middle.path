@@ -1,0 +1,86 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.1738486842105262,
+        "y": 6.998108552631579
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.173848684210526,
+        "y": 6.998108552631579
+      },
+      "isLocked": false,
+      "linkedName": "Left Source"
+    },
+    {
+      "anchor": {
+        "x": 2.5016447368421053,
+        "y": 5.5259868421052625
+      },
+      "prevControl": {
+        "x": 2.3438592765709303,
+        "y": 6.761972947562799
+      },
+      "nextControl": {
+        "x": 2.617105263157895,
+        "y": 4.621546052631578
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.9153782894736837,
+        "y": 2.726069078947369
+      },
+      "prevControl": {
+        "x": 2.432367305308009,
+        "y": 3.2918819461128743
+      },
+      "nextControl": {
+        "x": 3.2521381578947364,
+        "y": 2.331578947368421
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.330427631578947,
+        "y": 2.504769736842105
+      },
+      "prevControl": {
+        "x": 4.330427631578947,
+        "y": 2.504769736842105
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Right-Middle Reef"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 4.0,
+    "maxAngularVelocity": 120.0,
+    "maxAngularAcceleration": 120.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 121.12247019679198
+  },
+  "reversed": false,
+  "folder": "Left Source",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -54.46232220802568
+  },
+  "useDefaultConstraints": true
+}
