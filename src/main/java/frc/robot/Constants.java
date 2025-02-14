@@ -40,8 +40,8 @@ public final class Constants {
       }
     }
     public static final RobotConfig config = getConfig();
-    public static final PIDConstants translationPID = new PIDConstants(6, 0.1, 1.25); //7.9 0.1 1.25
-    public static final PIDConstants rotationPID = new PIDConstants(1,0,0); 
+    public static final PIDConstants translationPID = new PIDConstants(7.9, 0.1, 1.25);
+    public static final PIDConstants rotationPID = new PIDConstants(7.9,0,0.1); 
   } 
 
   /**Swerve Module Constants */

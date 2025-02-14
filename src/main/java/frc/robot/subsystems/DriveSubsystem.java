@@ -48,7 +48,7 @@ public class DriveSubsystem extends SubsystemBase {
     private AHRS navX = new AHRS(NavXComType.kMXP_SPI);
     private SwerveDriveOdometry odometry = new SwerveDriveOdometry(
         DriveConstants.kDriveKinematics, 
-        Rotation2d.fromDegrees(getHeading()), 
+        Rotation2d.fromDegrees(getHeading(true)), 
         new SwerveModulePosition[] {
             frontLeft.getPosition(),
             frontRight.getPosition(),
@@ -61,7 +61,7 @@ public class DriveSubsystem extends SubsystemBase {
         
         //configure PathPlanner
         AutoBuilder.configure(
-            this::getPoseRightPositive, 
+            this::getPose, 
             this::resetPose, 
             this::getRelativeSpeeds, 
             (speeds,feedForwards)->driveRelative(speeds), 
@@ -87,7 +87,7 @@ public class DriveSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         odometry.update( 
-            Rotation2d.fromDegrees(getHeading()), 
+            Rotation2d.fromDegrees(getHeading(true)), 
             new SwerveModulePosition[] {
                 frontLeft.getPosition(),
                 frontRight.getPosition(),
@@ -109,13 +109,10 @@ public class DriveSubsystem extends SubsystemBase {
     public Pose2d getPose() {
         return odometry.getPoseMeters();
     }
-    public Pose2d getPoseRightPositive() {
-        Pose2d pose = odometry.getPoseMeters();
-        return new Pose2d(pose.getTranslation(),Rotation2d.fromDegrees(getHeading(true)));
-    }
+
     public void resetPose(Pose2d pose) {
         odometry.resetPosition( 
-            Rotation2d.fromDegrees(getHeading()), 
+            Rotation2d.fromDegrees(getHeading(true)), 
             new SwerveModulePosition[] {
                 frontLeft.getPosition(),
                 frontRight.getPosition(),
@@ -133,7 +130,8 @@ public class DriveSubsystem extends SubsystemBase {
         );
     }
     public void driveRelative(ChassisSpeeds speeds) {
-        SwerveModuleState[] states = DriveConstants.kDriveKinematics.toSwerveModuleStates(speeds);
+        ChassisSpeeds discretized = ChassisSpeeds.discretize(speeds,0.02);
+        SwerveModuleState[] states = DriveConstants.kDriveKinematics.toSwerveModuleStates(discretized);
         frontLeft.setDesiredState(states[0]); //1
         frontRight.setDesiredState(states[1]); //0
         backLeft.setDesiredState(states[2]); //3
@@ -164,8 +162,8 @@ public class DriveSubsystem extends SubsystemBase {
         if (fieldRelative) speeds = ChassisSpeeds.fromRobotRelativeSpeeds(speeds,Rotation2d.fromDegrees(getHeading()));
         driveRelativeRaw(speeds);
     }
-    public double getHeading(boolean rightPositive) {
-        return navX.getAngle() * (DriveConstants.kGyroReversed ^ rightPositive ? -1.0 : 1.0);
+    public double getHeading(boolean leftPositive) {
+        return navX.getAngle() * (DriveConstants.kGyroReversed ^ leftPositive ? -1.0 : 1.0);
     }
     public double getHeading() {
         return getHeading(false);
