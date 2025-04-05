@@ -18,6 +18,10 @@ public class RunOuttakeCommand extends Command {
         outtakeSubsystem.setOuttake(state.getValue());
     }
     @Override
+    public void execute() {
+        outtakeSubsystem.setOuttake(state.getValue());
+    }
+    @Override
     public void end(boolean interrupted) {
         outtakeSubsystem.setOuttake(0);
     }

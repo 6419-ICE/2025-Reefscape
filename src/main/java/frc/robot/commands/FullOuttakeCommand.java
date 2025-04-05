@@ -17,7 +17,7 @@ public class FullOuttakeCommand extends SequentialCommandGroup {
     public FullOuttakeCommand(int level, boolean left, OuttakeSubsystem outtakeSubsystem, ElevatorSubsystem elevatorSubsystem, LimelightSubsystem limelightSubsystem, DriveSubsystem driveSubsystem) {
         if (level < 0 || level > 4) DriverStation.reportError("Level must be 1,2,3, or 4",true);
         addCommands(
-            new OrientToAprilTag(level, left, limelightSubsystem, driveSubsystem),
+            new OrientToAprilTagCommand(level, left, limelightSubsystem, driveSubsystem),
             Commands.parallel(
                 new MoveElevatorAndOuttakeCommand(ElevatorAndOuttakePositions.valueOf("L" + level), elevatorSubsystem, outtakeSubsystem),
                 //drive until its against the wall
