@@ -3,45 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.1738486842105262,
-        "y": 6.998108552631579
+        "x": 7.167251712328767,
+        "y": 4.002461472602739
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.173848684210526,
-        "y": 6.998108552631579
-      },
-      "isLocked": false,
-      "linkedName": "Left Source"
-    },
-    {
-      "anchor": {
-        "x": 2.3909950657894736,
-        "y": 4.7514391447368425
-      },
-      "prevControl": {
-        "x": 2.282421875,
-        "y": 5.87477384868421
-      },
-      "nextControl": {
-        "x": 2.4995682565789474,
-        "y": 3.6281044407894747
+        "x": 7.506854597087606,
+        "y": 4.01112315416385
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.9667808219178085,
-        "y": 2.815432363013698
+        "x": 6.6413527397260275,
+        "y": 4.002461472602739
       },
       "prevControl": {
-        "x": 2.9667808219178085,
-        "y": 2.815432363013698
+        "x": 6.383855782102607,
+        "y": 3.9997592012982146
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right-Alliance Reef"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -58,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 59.80837703904239
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "Left Source",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -54.46232220802568
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

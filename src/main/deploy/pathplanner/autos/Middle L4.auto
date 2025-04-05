@@ -7,25 +7,31 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right to Right-Alliance"
+            "pathName": "Drive Off Line"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake note"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score L4 Left"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Middle L4 2"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Zero Elevator"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Elevator L2"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score Note"
           }
         }
       ]

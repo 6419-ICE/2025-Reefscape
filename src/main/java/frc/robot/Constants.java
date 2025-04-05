@@ -12,6 +12,7 @@ import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -40,8 +41,8 @@ public final class Constants {
       }
     }
     public static final RobotConfig config = getConfig();
-    public static final PIDConstants translationPID = new PIDConstants(7.9, 0.1, 1.25);
-    public static final PIDConstants rotationPID = new PIDConstants(7.9,0,0.1); 
+    public static final PIDConstants translationPID = new PIDConstants(8.25, 0, 0); 
+    public static final PIDConstants rotationPID = new PIDConstants(12,0,0); //8.75
   } 
 
   /**Swerve Module Constants */
@@ -75,14 +76,14 @@ public final class Constants {
     public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
     public static final double kTurningEncoderPositionPIDMaxInput = Math.PI*2; // radians
 
-    public static final double kDrivingP = 0.055726; //0.055726;
+    public static final double kDrivingP = 0.275; //0.055726;
     public static final double kDrivingI = 0;
     public static final double kDrivingD = 0;
-    public static final double kDrivingFF = 1 / kDriveWheelFreeSpeedRps;
+    public static final double kDrivingFF = 1.0 / 565.0;
     public static final double kDrivingMinOutput = -1;
     public static final double kDrivingMaxOutput = 1;
 
-    public static final double kTurningP = 4;
+    public static final double kTurningP = 2.125;
     public static final double kTurningI = 0;
     public static final double kTurningD = 0;
     public static final double kTurningFF = 0;
@@ -92,10 +93,10 @@ public final class Constants {
     public static final IdleMode kDrivingMotorIdleMode = IdleMode.kBrake;
     public static final IdleMode kTurningMotorIdleMode = IdleMode.kBrake;
 
-    public static final int kDrivingMotorCurrentLimit = 50; // amps
-    public static final int kTurningMotorCurrentLimit = 15; // amps
+    public static final int kDrivingMotorCurrentLimit = 40; // amps
+    public static final int kTurningMotorCurrentLimit = 30; // amps
 
-    public static final double currentDrawAgainstWall = 25;
+    public static final double currentDrawAgainstWall = 35;
   }
   public static final class NeoMotorConstants {
 
@@ -160,43 +161,41 @@ public final class Constants {
 
     public static final int lineBreakPort = 3;
 
-    public static final double rotationP = 0.0;
+    public static final double rotationP = 0.15; //0.55
     public static final double rotationI = 0.0;
     public static final double rotationD = 0.0;
-    public static final double tolerance = 1;
+    public static final double tolerance = 3;
   }
 
   public static class IntakeConstants {
     public static final int intakeMotorID1 = 12;
-    public static final int intakeMotorID2 = 13;
 
-    public static final int lineBreakPort = 2;
+    public static final int lineBreakPort = 0;
 
   }
 
   public static class ElevatorConstants {
+    public static final int rightMotorID = 13;
     public static final int leftMotorID = 14;
-    public static final int rightMotorID = 15;
 
-    public static final int encoderPortA = 0;
-    public static final int encoderPortB = 1;
-
-    public static final double kP = 0;
+    
+    public static final int switchPort = 2;
+    public static final double kP = 0.0675; //0.065
     public static final double kI = 0;
-    public static final double kD = 0;
+    public static final double kD = 0.001;
     public static final double tolerance = 0.25;
   }
 
   public static class FlipperConstants {
-    public static final int rotationMotorID = 16;
-    public static final int wheelMotorID = 17;
+    public static final int rotationMotorID = 15;
+    public static final int wheelMotorID = 16;
 
     public static final double rotationP = 0.0;
     public static final double rotationI = 0.0;
     public static final double rotationD = 0.0;
   }
   public static class HangerConstants {
-    public static final int motorID = 18;
+    public static final int motorID = 17;
 
     
   }
@@ -205,28 +204,29 @@ public final class Constants {
 
   public static enum OuttakeAngles implements DoubleConstant {
     inside   {public double getValue() {return 0;}},
-    intake   {public double getValue() {return 0;}},
-    lowScore {public double getValue() {return 0;}},
-    midScore {public double getValue() {return 0;}},
-    topScore {public double getValue() {return 0;}}
+    intake   {public double getValue() {return -57.5;}}, //-52.5
+    lowScore {public double getValue() {return -57.5;}}, //-52.5
+    midScore {public double getValue() {return -57.5;}}, //-52.5
+    topScore {public double getValue() {return -57.5;}}  //-43.6
   }
   public static enum OuttakeStates implements DoubleConstant {
-    intake   {public double getValue() {return 0;}},
-    outtake  {public double getValue() {return 0;}},
+    intake   {public double getValue() {return 0.25;}},
+    outtake  {public double getValue() {return 1;}},
+    reverse  {public double getValue() {return -0.25;}},
     idle     {public double getValue() {return 0;}}
   }
   public static enum IntakeStates implements DoubleConstant {
-    intake   {public double getValue() {return 0;}},
-    outtake  {public double getValue() {return 0;}},
+    intake   {public double getValue() {return 0.175;}},
+    outtake  {public double getValue() {return -0.5;}},
     idle     {public double getValue() {return 0;}}
   }
   public static enum ElevatorPositions implements DoubleConstant {
-    inside {public double getValue() {return 0;}},
-    intake {public double getValue() {return 0;}},
-    L1     {public double getValue() {return 0;}},
-    L2     {public double getValue() {return 0;}},
-    L3     {public double getValue() {return 0;}},
-    L4     {public double getValue() {return 0;}}
+    inside {public double getValue() {return 0.0;}},
+    intake {public double getValue() {return 0.0;}},
+    L1     {public double getValue() {return 0.0;}},
+    L2     {public double getValue() {return 10;}},
+    L3     {public double getValue() {return 22;}},
+    L4     {public double getValue() {return 40.75;}}//38
   }
   public static enum FlipperAngles implements DoubleConstant {
     extended {public double getValue() {return 90;}},
@@ -260,12 +260,20 @@ public final class Constants {
     }
   }
   public static final class LimelightConstants {
-    public static final double kLimelightAngle = 0;
+    public static final double kLimelightAngle = 27;
     //height of the center of the limelight lens from the floor
     public static final double kLimelightHeightInches = 5.75;
-    public static final PIDController translationController = new PIDController(0, 0, 0);
-    public static final PIDController rotationController = new PIDController(0, 0, 0);
-    public static final double reefXDiff = 6;
-    public static final double reefZDiff = 18;
+    public static final PIDController xTranslationController = new PIDController(0.6, 0, 0);
+    public static final PIDController zTranslationController = new PIDController(0.6,0,0);
+    public static final PIDController rotationController = new PIDController(0.01, 0, 0);
+    public static final double reefXDiff = 0.12;
+    public static final double reefZDiff = 0.17;
+    public static final double reefXTolerance = 0.01;
+    public static final double reefHeadingTolerance = 0.05;  
+    public static final double reefZTolerance = 0.01;
+  }
+  public static final class LEDConstants {
+    public static final int LEDPort = 0;
+    public static final int LEDCount = 5;
   }
 }
