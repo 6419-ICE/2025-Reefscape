@@ -83,7 +83,7 @@ public class SwerveModule implements Sendable{
         ).outputRange(
             ModuleConstants.kDrivingMinOutput,
             ModuleConstants.kDrivingMaxOutput
-        );
+        ).iZone(0.1).dFilter(0.1);
         // driveController.setP(ModuleConstants.kDrivingP);
         // driveController.setI(ModuleConstants.kDrivingI);
         // driveController.setD(ModuleConstants.kDrivingD);
@@ -182,9 +182,12 @@ public class SwerveModule implements Sendable{
         builder.addDoubleProperty("Turn Motor Temp", this::getTurnTemp, null);
         builder.addDoubleProperty("Drive Motor Current", driveMotor::getOutputCurrent,null);
         builder.addDoubleProperty("Turn Motor Current", turnMotor::getOutputCurrent, null);
+        builder.addDoubleProperty("Drive Motor Duty Cycle", driveMotor::get, null);
         SwerveModuleState state = getState();
-        builder.addDoubleProperty("Drive Motor Velocity", ()->state.speedMetersPerSecond, null);
+        builder.addDoubleProperty("Drive Motor Velocity (Requested)", ()->state.speedMetersPerSecond, null);
+        builder.addDoubleProperty("Drive Motor Velocity (Actual)", driveMotor.getEncoder()::getVelocity, null);
         builder.addDoubleProperty("Turn Motor Position", ()->state.angle.getDegrees(), null);
+    
         builder.update();
     }
 

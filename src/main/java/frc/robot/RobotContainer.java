@@ -22,6 +22,7 @@ import frc.robot.commands.RotateOuttakeCommand;
 import frc.robot.commands.RunFlipperCommand;
 import frc.robot.commands.RunIntakeCommand;
 import frc.robot.commands.RunOuttakeCommand;
+import frc.robot.commands.TestDriveCommand;
 import frc.robot.commands.TestOuttakeCommand;
 import frc.robot.commands.ZeroElevatorCommand;
 import frc.robot.subsystems.DriveSubsystem;
@@ -113,6 +114,7 @@ public class RobotContainer {
     commandChooser = AutoBuilder.buildAutoChooser();
     
     //defineNamedCommands();
+    commandChooser.addOption("Drive Test", new TestDriveCommand(driveSubsystem));
     commandChooser.addOption("Test Outtake", new TestOuttakeCommand(outtakeSubsystem));
     commandChooser.addOption("Spin Outtake", new PowerOuttakeRotationCommand(-0.2,outtakeSubsystem));
     commandChooser.addOption("Test Elevator", new ElevatorStressTest(elevatorSubsystem).repeatedly().withTimeout(Units.Minutes.of(5)));
@@ -151,7 +153,7 @@ public class RobotContainer {
           driveSubsystem.drive(
             MathUtil.applyDeadband(-driveController.getLeftY(), 0.06),
             MathUtil.applyDeadband(-driveController.getLeftX(), 0.06),
-            MathUtil.applyDeadband(-driveController.getRightX(), 0.06),
+            MathUtil.applyDeadband(-driveController.getRightX()*2, 0.06),
             true);
         }, 
         driveSubsystem
@@ -218,7 +220,7 @@ public class RobotContainer {
               new OrientToAprilTagCommand(rightLimelightSubsystem, driveSubsystem).withTimeout(2),
               new MoveElevatorAndOuttakeCommand(ElevatorAndOuttakePositions.L2, elevatorSubsystem, outtakeSubsystem)
             ),
-            new RunOuttakeCommand(OuttakeStates.outtake, outtakeSubsystem).withTimeout(0.9)
+            new RunOuttakeCommand(OuttakeStates.outtake, outtakeSubsystem).withTimeout(1.2)
            )
         ),
         Pair.of(
@@ -228,8 +230,7 @@ public class RobotContainer {
               new OrientToAprilTagCommand(leftLimelightSubsystem, driveSubsystem).withTimeout(2),
               new MoveElevatorAndOuttakeCommand(ElevatorAndOuttakePositions.L2, elevatorSubsystem, outtakeSubsystem)
             ),
-            new RunOuttakeCommand(OuttakeStates.outtake, outtakeSubsystem).withTimeout(0.9
-            )
+            new RunOuttakeCommand(OuttakeStates.outtake, outtakeSubsystem).withTimeout(1.2)
            )
         ),
         Pair.of(

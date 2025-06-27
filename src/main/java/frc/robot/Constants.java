@@ -76,9 +76,9 @@ public final class Constants {
     public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
     public static final double kTurningEncoderPositionPIDMaxInput = Math.PI*2; // radians
 
-    public static final double kDrivingP = 0.275; //0.055726;
-    public static final double kDrivingI = 0;
-    public static final double kDrivingD = 0;
+    public static final double kDrivingP = 0.5; //0.055726; //0.275 //5 //0.75 //1
+    public static final double kDrivingI = 0.011;
+    public static final double kDrivingD = 1.75;//00001;
     public static final double kDrivingFF = 1.0 / 565.0;
     public static final double kDrivingMinOutput = -1;
     public static final double kDrivingMaxOutput = 1;
@@ -128,7 +128,7 @@ public final class Constants {
     public static final int backRightTurnID = 7;
   }
   public static final class DriveConstants {
-    public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(17.6); 
+    public static final double kMaxSpeedMetersPerSecond = 5.7; 
     public static final double kMaxAngularSpeed = 2*Math.PI; // radians per second //2*math.pi
 
     // Chassis configuration
@@ -204,10 +204,10 @@ public final class Constants {
 
   public static enum OuttakeAngles implements DoubleConstant {
     inside   {public double getValue() {return 0;}},
-    intake   {public double getValue() {return -57.5;}}, //-52.5
-    lowScore {public double getValue() {return -57.5;}}, //-52.5
-    midScore {public double getValue() {return -57.5;}}, //-52.5
-    topScore {public double getValue() {return -57.5;}}  //-43.6
+    intake   {public double getValue() {return -57;}}, //-57.5
+    lowScore {public double getValue() {return -57;}}, //-52.5
+    midScore {public double getValue() {return -57;}}, //-52.5
+    topScore {public double getValue() {return -57;}}  //-43.6
   }
   public static enum OuttakeStates implements DoubleConstant {
     intake   {public double getValue() {return 0.25;}},
