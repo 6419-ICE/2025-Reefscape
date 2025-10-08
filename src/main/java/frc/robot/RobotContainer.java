@@ -133,7 +133,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     //configureBindings();
     configureBindings();
-
+    //configureBindingsElevatorStringing();
     Logger.init();
   }
 
@@ -167,12 +167,13 @@ public class RobotContainer {
       driveController.R1().and(driveController.L1().negate()).whileTrue(
         new OrientToAprilTagCommand(leftLimelightSubsystem,driveSubsystem)
       );
+      driveController.circle().onTrue(new InstantCommand(elevatorSubsystem::clearManualPause));
       //Control Elevator
       buttonBox.getElevatorButtons()
         .whileTrue(new MoveElevatorAndOuttakeCommand(()->ElevatorAndOuttakePositions.getLevel(buttonBox.getSelectedLevel()), elevatorSubsystem, outtakeSubsystem))
         .whileFalse(Commands.sequence(
-          new MoveElevatorAndOuttakeCommand(ElevatorAndOuttakePositions.intake, elevatorSubsystem, outtakeSubsystem),
-          new ZeroElevatorCommand(elevatorSubsystem)
+            new MoveElevatorAndOuttakeCommand(ElevatorAndOuttakePositions.intake, elevatorSubsystem, outtakeSubsystem)
+          // new ZeroElevatorCommand(elevatorSubsystem)
         ));
         // buttonBox.getElevatorButtons().toggleOnTrue(
         //   Commands.parallel(
@@ -195,6 +196,7 @@ public class RobotContainer {
         )
         );
       buttonBox.getHang().whileTrue(new RunOuttakeCommand(OuttakeStates.reverse, outtakeSubsystem));
+
       //Remove Algae
   }
   private void configureBindingsElevatorStringing() {

@@ -26,7 +26,7 @@ public class FullIntakeCommand extends SequentialCommandGroup {
                 Commands.race(
                     new RunOuttakeCommand(OuttakeStates.intake, outtakeSubsystem),
                     new RunIntakeCommand(IntakeStates.intake, intakeSubsystem),
-                    new WaitUntilCommand(intakeSubsystem::hasCoral).andThen(new WaitCommand(1)).andThen(new WaitUntilCommand(()->!intakeSubsystem.hasCoral()))
+                    new WaitUntilCommand(intakeSubsystem::hasCoral).andThen(new WaitCommand(0.7)).andThen(new WaitUntilCommand(()->!intakeSubsystem.hasCoral()))
                 )
             )
         );

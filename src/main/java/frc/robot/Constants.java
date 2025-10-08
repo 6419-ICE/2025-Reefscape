@@ -180,10 +180,16 @@ public final class Constants {
 
     
     public static final int switchPort = 2;
-    public static final double kP = 0.0675; //0.065
+    public static final double kP = 0.095; //0.065 //0.0675 <- pre laserCAN 
     public static final double kI = 0;
-    public static final double kD = 0.001;
-    public static final double tolerance = 0.25;
+    public static final double kD = 0.0;
+    public static final double tolerance = 0.75;
+
+    public static final int laserCANid = 18; 
+    public static final double measurementOffset = 5.25;
+    public static final double minHeight = 17.25; //This is a hard limit (the elevator physically cannot go lower then this)
+    public static final double maxHeight = 75.25; //This is a soft limit (the elevator has ~1 inch extra space before hitting every hardstop)
+
   }
 
   public static class FlipperConstants {
@@ -205,9 +211,9 @@ public final class Constants {
   public static enum OuttakeAngles implements DoubleConstant {
     inside   {public double getValue() {return 0;}},
     intake   {public double getValue() {return -57;}}, //-57.5
-    lowScore {public double getValue() {return -57;}}, //-52.5
-    midScore {public double getValue() {return -57;}}, //-52.5
-    topScore {public double getValue() {return -57;}}  //-43.6
+    lowScore {public double getValue() {return -56.7;}}, //-52.5
+    midScore {public double getValue() {return -56.7;}}, //-52.5
+    topScore {public double getValue() {return -47;}}  //-43.6 //-57
   }
   public static enum OuttakeStates implements DoubleConstant {
     intake   {public double getValue() {return 0.25;}},
@@ -221,12 +227,12 @@ public final class Constants {
     idle     {public double getValue() {return 0;}}
   }
   public static enum ElevatorPositions implements DoubleConstant {
-    inside {public double getValue() {return 0.0;}},
-    intake {public double getValue() {return 0.0;}},
-    L1     {public double getValue() {return 0.0;}},
-    L2     {public double getValue() {return 10;}},
-    L3     {public double getValue() {return 22;}},
-    L4     {public double getValue() {return 40.75;}}//38
+    inside {public double getValue() {return 17.25;}},
+    intake {public double getValue() {return 17.25;}},
+    L1     {public double getValue() {return 17.25;}},
+    L2     {public double getValue() {return 29;}}, //30.5
+    L3     {public double getValue() {return 46.5;}},
+    L4     {public double getValue() {return 72;}}//38
   }
   public static enum FlipperAngles implements DoubleConstant {
     extended {public double getValue() {return 90;}},
@@ -266,8 +272,8 @@ public final class Constants {
     public static final PIDController xTranslationController = new PIDController(0.6, 0, 0);
     public static final PIDController zTranslationController = new PIDController(0.6,0,0);
     public static final PIDController rotationController = new PIDController(0.01, 0, 0);
-    public static final double reefXDiff = 0.12;
-    public static final double reefZDiff = 0.17;
+    public static final double reefXDiff = 0.11; //0.12
+    public static final double reefZDiff = 0.18;
     public static final double reefXTolerance = 0.01;
     public static final double reefHeadingTolerance = 0.05;  
     public static final double reefZTolerance = 0.01;

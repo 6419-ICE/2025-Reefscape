@@ -5,15 +5,22 @@
     "data": {
       "commands": [
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "Intake note"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Right L2"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Right L2"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake note"
+                }
+              }
+            ]
           }
         },
         {
