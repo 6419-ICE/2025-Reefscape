@@ -106,7 +106,8 @@ public class RobotContainer {
     intakeSubsystem = new IntakeSubsystem();
     leftLimelightSubsystem = new LimelightSubsystem(Side.left);
     rightLimelightSubsystem = new LimelightSubsystem(Side.right);
-    ledSubsystem = new LEDSubsystem();
+    ledSubsystem = new LEDSubsystem(elevatorSubsystem::getPosition);
+    CommandScheduler.getInstance().registerSubsystem(ledSubsystem);
     driveSubsystem = new DriveSubsystem();
     defineNamedCommands();
     driveSubsystem.configAutoBuilder();

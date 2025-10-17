@@ -231,7 +231,7 @@ public final class Constants {
     intake {public double getValue() {return 17.25;}},
     L1     {public double getValue() {return 17.25;}},
     L2     {public double getValue() {return 29;}}, //30.5
-    L3     {public double getValue() {return 46.5;}},
+    L3     {public double getValue() {return 45.5;}},
     L4     {public double getValue() {return 72;}}//38
   }
   public static enum FlipperAngles implements DoubleConstant {
@@ -280,6 +280,6 @@ public final class Constants {
   }
   public static final class LEDConstants {
     public static final int LEDPort = 0;
-    public static final int LEDCount = 5;
+    public static final int LEDStripCount = 25;
   }
 }

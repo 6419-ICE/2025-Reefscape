@@ -126,8 +126,10 @@ public class ElevatorSubsystem extends SubsystemBase implements Sendable {
             DriverStation.reportWarning("Elevator fault present ("+elevatorFault+"), press \"Circle\" to clear", new StackTraceElement[0]);
             setPower(0.0);
             prevPosition = getPosition();
+            LEDSubsystem.setElevatorPattern(LEDSubsystem.ELEVATOR_ERR);
             return;
         }
+        LEDSubsystem.setElevatorPattern(LEDSubsystem.ELEVATOR_STANDARD);
        
 
         
